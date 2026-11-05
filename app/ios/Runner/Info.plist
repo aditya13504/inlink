@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>NSCameraUsageDescription</key>
+    <string>InLink uses the camera to scan a contact's public identity QR code.</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>InLink uses Bluetooth to discover nearby devices and exchange encrypted messages directly.</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>InLink advertises a nearby messaging service so trusted contacts can connect.</string>
+</dict>
+</plist>

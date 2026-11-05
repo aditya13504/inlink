@@ -1,0 +1,12 @@
+{
+  "protocol_version": 1,
+  "message_id": "example-random-id",
+  "conversation_ref": "opaque-reference",
+  "sender_key_ref": "sender-key-reference",
+  "recipient_key_ref": "recipient-key-reference",
+  "created_at": 0,
+  "expires_at": 0,
+  "message_type": "encrypted_payload",
+  "payload": "ciphertext-placeholder",
+  "delivery_policy": "store_and_forward"
+}

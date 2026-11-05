@@ -1,0 +1,39 @@
+name: Security baseline
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: relay/requirements.txt
+      - name: Install relay dependencies and scanners
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r relay/requirements.txt bandit pip-audit
+      - name: Source baseline checks
+        run: |
+          python scripts/validate_m11_source.py
+          python scripts/validate_m12_source.py
+          python scripts/validate_m13_security.py
+          python scripts/validate_m14_beta.py
+      - name: Compile relay source
+        run: python -m compileall -q relay
+      - name: Relay unit tests
+        run: python -m pytest -q relay/tests
+      - name: Bandit static analysis
+        run: bandit -q -r relay/app -ll
+      - name: Dependency vulnerability audit
+        run: pip-audit -r relay/requirements.txt
